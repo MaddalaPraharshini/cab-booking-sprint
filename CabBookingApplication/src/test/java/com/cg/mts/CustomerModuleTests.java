@@ -1,6 +1,7 @@
 package com.cg.mts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -99,5 +100,11 @@ class CustomerModuleTests extends AbstractTest {
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
 	}
+	
+	@Test
+	public void deleteCustomer() throws Exception {
+		this.mvc.perform(MockMvcRequestBuilders.delete("/customer/4").contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 
+	}
 }
